@@ -9,6 +9,9 @@ public interface DragonService {
 
     List<Dragon> lire();
 
+    Dragon donne(Long id);
+
+
     Dragon modifier(Long id, Dragon dragon);
 
     String supprimer(Long id);

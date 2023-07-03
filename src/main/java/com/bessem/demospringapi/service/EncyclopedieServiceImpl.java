@@ -27,7 +27,7 @@ public class EncyclopedieServiceImpl implements EncyclopedieService{
     public Encyclopedie modifier(Long id, Encyclopedie encyclopedie) {
         return encyclopedieRepository.findById(id).map(e -> {
             e.setTitre(encyclopedie.getTitre());
-            e.setContenue(encyclopedie.getContenue());
+            e.setContenu(encyclopedie.getContenu());
             e.setId_espece(encyclopedie.getId_espece());
 
             return encyclopedieRepository.save(e);

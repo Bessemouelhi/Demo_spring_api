@@ -24,6 +24,11 @@ public class DragonServiceImpl implements DragonService{
     }
 
     @Override
+    public Dragon donne(Long id) {
+        return dragonRepository.getReferenceById(id);
+    }
+
+    @Override
     public Dragon modifier(Long id, Dragon dragon) {
         return dragonRepository.findById(id).map(d -> {
             d.setName(dragon.getName());

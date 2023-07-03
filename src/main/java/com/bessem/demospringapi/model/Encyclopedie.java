@@ -18,7 +18,7 @@ public class Encyclopedie {
     @Column(length = 20)
     private String titre;
 
-    private String contenue;
+    private String contenu;
 
     private int id_espece;
 }

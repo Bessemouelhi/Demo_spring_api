@@ -25,6 +25,11 @@ public class DragonController {
     public List<Dragon> read() {
         return dragonService.lire();
     }
+    @GetMapping("/{id}")
+    public Dragon get(@PathVariable Long id) {
+        return dragonService.donne(id);
+    }
+
 
     @PutMapping("/{id}")
     public Dragon update(@PathVariable Long id, @RequestBody Dragon dragon) {
