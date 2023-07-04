@@ -25,7 +25,7 @@ public class DragonServiceImpl implements DragonService{
 
     @Override
     public Dragon donne(Long id) {
-        return dragonRepository.getReferenceById(id);
+        return dragonRepository.getById(id);
     }
 
     @Override
