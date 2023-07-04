@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dragon")
+@RequestMapping("/")
 @AllArgsConstructor
 public class DragonController {
 
     private final DragonService dragonService;
 
-    @PostMapping("/")
+    @PostMapping("admin/dragon")
     public Dragon create(@RequestBody Dragon dragon) {
         return dragonService.creer(dragon);
     }
 
-    @GetMapping("/")
+    @GetMapping({"user/dragon", "admin/dragon"})
     public List<Dragon> read() {
         return dragonService.lire();
     }
-    @GetMapping("/{id}")
+    @GetMapping({"user/dragon/{id}", "admin/dragon/{id}"})
     public Dragon get(@PathVariable Long id) {
         return dragonService.donne(id);
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("admin/dragon/{id}")
     public Dragon update(@PathVariable Long id, @RequestBody Dragon dragon) {
         return dragonService.modifier(id, dragon);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("admin/dragon/{id}")
     public String delete(@PathVariable Long id) {
         return dragonService.supprimer(id);
     }
