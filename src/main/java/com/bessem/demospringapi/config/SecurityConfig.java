@@ -21,9 +21,8 @@ public class SecurityConfig {
         http.formLogin(form -> form.disable());
         http.authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/public").permitAll()
-                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PATCH).hasRole("ADMIN")
