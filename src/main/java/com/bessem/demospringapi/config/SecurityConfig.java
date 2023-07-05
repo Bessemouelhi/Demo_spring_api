@@ -12,15 +12,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable());
-        http.formLogin(form -> form.disable());
-        http.authorizeHttpRequests((auth) -> auth
+        http.formLogin(withDefaults());
+        http.oauth2Login(withDefaults());
+        //http.formLogin(form -> form.disable());
+        http.authorizeHttpRequests((auth) -> auth //autorise les requetes aux roles ci dessous
                         .requestMatchers("/public").permitAll()
+                        .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST).hasRole("ADMIN")

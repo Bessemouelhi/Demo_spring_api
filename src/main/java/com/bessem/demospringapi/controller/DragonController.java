@@ -21,7 +21,7 @@ public class DragonController {
         return dragonService.creer(dragon);
     }
 
-    @GetMapping({"user/dragon", "admin/dragon", "public/dragon"})
+    @GetMapping({"public/dragon", "user/dragon", "admin/dragon"})
     public List<Dragon> read() {
         return dragonService.lire();
     }
