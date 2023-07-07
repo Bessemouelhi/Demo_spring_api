@@ -3,6 +3,8 @@ package com.bessem.demospringapi.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -11,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -18,9 +21,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable());
+        http.csrf((csrf) -> csrf.disable());
         http.formLogin(withDefaults());
-        http.oauth2Login(withDefaults());
+        //http.oauth2Login(withDefaults());
         //http.formLogin(form -> form.disable());
         http.authorizeHttpRequests((auth) -> auth //autorise les requetes aux roles ci dessous
                         .requestMatchers("/public").permitAll()
@@ -58,5 +61,11 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authManager(AuthenticationConfiguration authConfig) throws Exception
+    {
+        return authConfig.getAuthenticationManager();
     }
 }

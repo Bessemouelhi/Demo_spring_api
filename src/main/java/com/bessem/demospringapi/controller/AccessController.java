@@ -17,31 +17,32 @@ import java.security.Principal;
 public class AccessController
 {
 
-    private final OAuth2AuthorizedClientService authorizedClientService;
-
-    public AccessController(OAuth2AuthorizedClientService authorizedClientService) {
-        this.authorizedClientService = authorizedClientService;
-    }
+//    private final OAuth2AuthorizedClientService authorizedClientService;
+//
+//    public AccessController(OAuth2AuthorizedClientService authorizedClientService) {
+//        this.authorizedClientService = authorizedClientService;
+//    }
     @GetMapping("/*")
     @RolesAllowed("USER")
     public String accessRoleUser(Principal user){
 
-        StringBuffer userInfo= new StringBuffer();
-        if(user instanceof UsernamePasswordAuthenticationToken){
-            userInfo.append(getUsernamePasswordLoginInfo(user));
-        }
-        else if(user instanceof OAuth2AuthenticationToken){
-            userInfo.append(getOauth2LoginInfo(user));
-        }
-        return userInfo.toString();
+//        StringBuffer userInfo= new StringBuffer();
+//        if(user instanceof UsernamePasswordAuthenticationToken){
+//            userInfo.append(getUsernamePasswordLoginInfo(user));
+//        }
+//        else if(user instanceof OAuth2AuthenticationToken){
+//            userInfo.append(getOauth2LoginInfo(user));
+//        }
+//        return userInfo.toString();
+        return user.getName();
     }
 
-    private StringBuffer getOauth2LoginInfo(Principal user){
-        StringBuffer protectedInfo = new StringBuffer();
-        OAuth2AuthenticationToken authToken = ((OAuth2AuthenticationToken) user);
-        OAuth2AuthorizedClient authClient = this.authorizedClientService.loadAuthorizedClient(authToken.getAuthorizedClientRegistrationId(), authToken.getName());
-        return protectedInfo;
-    }
+//    private StringBuffer getOauth2LoginInfo(Principal user){
+//        StringBuffer protectedInfo = new StringBuffer();
+//        OAuth2AuthenticationToken authToken = ((OAuth2AuthenticationToken) user);
+//        OAuth2AuthorizedClient authClient = this.authorizedClientService.loadAuthorizedClient(authToken.getAuthorizedClientRegistrationId(), authToken.getName());
+//        return protectedInfo;
+//    }
 
     @GetMapping("/public")
     public String accessPublic(){
