@@ -10,28 +10,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/encyclopedie")
+@RequestMapping("/")
 @AllArgsConstructor
 public class EncyclopedieController {
 
     private final EncyclopedieService encyclopedieService;
 
-    @PostMapping("/")
+    @PostMapping("admin/encyclopedie")
     public Encyclopedie create(@RequestBody Encyclopedie encyclopedie) {
         return encyclopedieService.creer(encyclopedie);
     }
 
-    @GetMapping("/")
+    @GetMapping({"public/encyclopedie", "user/encyclopedie", "admin/encyclopedie"})
     public List<Encyclopedie> read() {
         return encyclopedieService.lire();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("admin/encyclopedie/{id}")
     public Encyclopedie update(@PathVariable Long id, @RequestBody Encyclopedie encyclopedie) {
         return encyclopedieService.modifier(id, encyclopedie);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("admin/encyclopedie/{id}")
     public String delete(@PathVariable Long id) {
         return encyclopedieService.supprimer(id);
     }

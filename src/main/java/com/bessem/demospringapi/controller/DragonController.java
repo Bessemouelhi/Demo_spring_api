@@ -1,9 +1,7 @@
 package com.bessem.demospringapi.controller;
 
 import com.bessem.demospringapi.model.Dragon;
-import com.bessem.demospringapi.model.Produit;
 import com.bessem.demospringapi.service.DragonService;
-import com.bessem.demospringapi.service.ProduitService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
